@@ -11,14 +11,12 @@ It serves as its own rollup contract and exposes the function `function setState
 
 This is useful when using development environments such as Hardhat and Anvil where automining functionality, and the lack of an operational sequencer means that L2 state is not synchronized with the L1 chain.
 
-It is prover agnostic meaning that you 
-
 ## UncheckedVerifier
 
 An `UncheckedVerifier` is one that interacts with an `UncheckedProver` to return raw values rather than proofs. That is to say, there is no verification of any proofs.
 
 This kind of verifier is useful for development and testing in environments where `eth_getProof` is not supported.
-For example hardhat [does not currently support it](https://hardhat.org/hardhat-network/docs/reference#eth_getproof).
+For example neither hardhat 2 or 3 [currently support it](https://hardhat.org/hardhat-network/docs/reference#eth_getproof).
 
 
 ## TrustedVerifier

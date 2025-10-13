@@ -2,7 +2,7 @@
 
 The [solidity storage layout documentation](https://docs.soliditylang.org/en/latest/internals/layout_in_storage.html) outlines that *"The elements of structs and arrays are stored after each other, just as if they were given as individual values."*
 
-As such, once the slot pointer points to the root of a struct, we can view contiguous items by simply incrementing the slot pointer. The [Builder API](/builder-api-methods) exposes methods to do this (`addSlot`).
+As such, once the slot pointer points to the root of a struct, we can view contiguous items by simply incrementing the slot pointer. The [Builder API](/architecture/builder-api-methods) exposes methods to do this (`addSlot`).
 
 ## Contract definition
 

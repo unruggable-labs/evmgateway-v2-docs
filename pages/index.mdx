@@ -7,18 +7,18 @@ Unruggable Gateways is an [open-source project](https://github.com/unruggable-la
 This documentation provides:
 
 - An overview of the solution’s [architecture](/architecture)
-- Details about the [virtual machine](/virtual-machine)
+- Details about the [virtual machine](/architecture/virtual-machine)
 - Several [examples](/examples) to help you get started
 
 The codebase is designed to be flexible so it can work with new rollups in the future.
 
 ## Features
 
-The codebase offers a simple [public API](/builder-api-methods) and a flexible internal [virtual machine](/virtual-machine).
+The codebase offers a simple [public API](/architecture/builder-api-methods) and a flexible internal [virtual machine](/architecture/virtual-machine).
 
 Key features of the solution include:
 - **Multiple targets**. You can fetch data from multiple contracts and use the results of one query as an input into the next.
-- **Data manipulation**. You can fetch a piece of data and then manpulate it. For example you could fetch a string and return a its `keccak256` hash or you could return a slice of a larger `bytes` value.
-- **Nested requests**. You can nest requests to allow you to do more complicated data manipulation and allow for conditional outputs. There is an example of this more advanced functionality [here](http://127.0.0.1:3000/examples) demonstrating the proposed [ENS v2 specification](https://blog.ens.domains/post/ensv2).
+- **Data manipulation**. You can fetch a piece of data and then manpulate it. For example you could fetch a string and return its `keccak256` hash or you could return a slice of a larger `bytes` value.
+- **Nested requests**. You can nest requests to allow you to do more complicated data manipulation and allow for conditional outputs. There is an example of this more advanced functionality [here](/examples) demonstrating the proposed [ENS v2 specification](https://blog.ens.domains/post/ensv2).
 
 If you have a use case that is not supported, please [get in touch](https://unruggable.com/contact) and/or consider [contributing](/contributing).

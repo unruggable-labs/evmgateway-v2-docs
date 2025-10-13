@@ -1,0 +1,89 @@
+# Evaluation loops
+
+Unruggable Gateways provides OP codes that allow for execution of arbitrary request bytes.
+
+## Request Bytes
+
+The Builder API provides an intuitive and simple interface for creating a request under the hood. 
+
+For example the underlying bytes for the request built in our first example, [Reading Value Types](http://localhost:3000/examples/reading-value-types) is:
+
+```bash
+0x011410000000000000000000000000000000000000003200463c0033
+```
+
+This bytecode represents the following operations:
+
+```bash
+off  op name
+  0   1 OUTPUT_COUNT
+  2  20 PUSH_20 bytes=0x1000000000000000000000000000000000000000
+ 23  50 SET_TARGET
+ 24   0 PUSH_0
+ 25  70 SET_SLOT
+ 26  60 READ_SLOT
+ 27   0 PUSH_0
+ 28  51 SET_OUTPUT
+ ```
+
+This can be discerned using the Typescript VM implementation and the following code:
+
+```js filename="example.js"
+import { GatewayRequest } from '../../src/vm.js';
+import { ProgramReader } from '../../src/reader.js';
+import { getBytes, hexlify } from 'ethers/utils';
+
+const req = new GatewayRequest(1)                               //Specify the number of outputs
+.setTarget('0x1000000000000000000000000000000000000000')        //Specify the contract address
+.setSlot(0)                                                     //Specify the slot number
+.read()                                                         //Read the value
+.setOutput(0)                                                   //Set it at output index 0
+
+const encoded = getBytes(req.encode());
+console.log(encoded);
+console.log(hexlify(encoded));
+console.log('Bytes:', encoded.length);
+```
+
+## Evaluation
+
+Request bytes can be explicitly evaluated within a request.
+
+For example you can do the following:
+
+```js filename="example.js"
+const req = new GatewayRequest(1);
+    .push(1300)
+    .pushProgram(new GatewayProgram().push(37).plus())
+    .eval()
+    .setOutput(0);
+```
+
+This program will set `1337` in output `0`.
+
+## Loops
+
+It is possible to loop a program, passing in stack items as arguments to the execution.
+
+We can configure how we want execution to proceed (or not) using configuration arguments.
+
+Utilizing the Typescript VM implementation, we can pass `success`, `failure`, `acquire`, or `keep` as configuration keys to `evalLoop`.
+
+For example:
+
+```js filename="example.js"
+const req = new GatewayRequest(1);
+    .push(123); // discarded
+    .push(456); // success => stop, out[0] = 456
+    .push(0); // failure
+    .pushStr(''); // failure
+    .pushProgram(new GatewayProgram().requireNonzero().setOutput(0));
+    .evalLoop({ success: true });
+```
+
+The program passed to this execution is simple - if the argument to the program is non-zero it is set as output 0.
+
+The `success` configuration tells the execution loop to **stop** when a successful execution loop occurs.
+
+The order of argument evaluation is from the top of the stack: `''`, `0`, `456`, and then `123`.
+Both `''` and `0` fail the evaluation, `456` passes. Evaluation stops, and this `123` is never seen.

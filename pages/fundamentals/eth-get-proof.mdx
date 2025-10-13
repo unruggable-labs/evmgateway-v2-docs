@@ -13,7 +13,7 @@ The proof returned by `eth_getProof` RPC call consists of several components:
 
 3. **`codeHash`**: 
    - The hash of the code of the account at the specified block
-   - `0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470` for non-contract accounts
+   - `0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470` for non-contract accounts (This is the output of `keccak256('')`)
 
 4. **`nonce`**: 
    - The transaction count of the account at the specified block
@@ -34,3 +34,7 @@ This proof allows verification of account and storage data without needing the e
 
 Other [chains](/chains) implement `eth_getProof` in a manner that differs from EIP 1186. For example Blast returns additional additional keys subject to its own proofing mechanisms.
 Chains such as [Linea](/chains/linea) and [zkSync](/chains/zksync) implement their own chain specific endpoints, `linea_getProof` and `zks_getProof`.
+
+## Caching
+
+Proof generation is an expensive operation and the Unruggable team as well as client teams, chain operators, and RPC providers are actively considering ways of optimising this process. Given that ultimately proofs are verified against state roots posted on Layer 1, caching seems like an appropriate path to explore. It is plausible that proof delivery providers could exist as a standalone service to support the use cases that Unruggable Gateways unlock.

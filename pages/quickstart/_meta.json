@@ -1,4 +1,7 @@
 {
-    "trusted-verifier": "TrustedVerifier",
+    "trusted-verifier": {
+        "title": "TrustedVerifier",
+        "display": "hidden"
+    },
     "ens-name-resolution": "ENS Name Resolution"
 }

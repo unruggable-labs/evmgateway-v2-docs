@@ -3,9 +3,15 @@
   "base": "Base",
   "linea": "Linea",
   "optimism": "Optimism",
-  "taiko": "Taiko",
+  "taiko": {
+    "title": "Taiko",
+    "display": "hidden"
+  },
   "scroll": "Scroll",
-  "zksync": "zkSync",
+  "zksync": {
+    "title": "zkSync",
+    "display": "hidden"
+  },
   "polygon-zkevm": {
     "title": "Polygon zkEVM",
     "display": "hidden"

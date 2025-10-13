@@ -69,7 +69,7 @@ Internally these methods utilize [OP codes](https://github.com/unruggable-labs/u
     solidity = "readBytes()" />
 
 <MethodPartial 
-    description = ""
+    description = "Allows you to read bytes of arbitrary length by proving against a hash of the data."
     js= "readHashedBytes()"
     solidity = "readHashedBytes()" />
 
@@ -148,47 +148,47 @@ The available evaluation flags are enumerated here: [Typescript](https://github.
 <i>These commands manipulate the data on the Virtual Machine's internal stack.</i>
 
 <MethodPartial 
-    description = ""
+    description = "Removes the item at the head of the stack."
     js= "pop()"
     solidity = "pop()" />
 
 <MethodPartial 
-    description = ""
+    description = "Duplicates the item at the specified position from the head of the stack, and places the duplicate at the head."
     js= "dup(back = 0)"
     solidity = "dup() / dup(uint256 back)" />
 
 <MethodPartial 
-    description = ""
+    description = "Swaps the item at the head of the stack with the item at the specified position from the head of the stack."
     js= "swap(back = 1)"
     solidity = "swap() / swap(uint256 back)" />
 
 <MethodPartial 
-    description = ""
+    description = "Pushes a specific output back onto the top of the stack."
     js= "pushOutput(i: number)"
     solidity = "pushOutput(uint256 i)" />
 
 <MethodPartial 
-    description = ""
+    description = "Copies the item at the specified index in the stack to the top of the stack."
     js= "pushStack(i: number)"
     solidity = "pushStack(uint256 i)" />
 
 <MethodPartial 
-    description = ""
+    description = "Push a number onto the stack."
     js= "push(x: BigNumberish | boolean)"
     solidity = "" />
 
 <MethodPartial 
-    description = ""
+    description = "Push the individual bytes of a string onto the stack. "
     js= "pushStr(s: string)"
     solidity = "" />
 
 <MethodPartial 
-    description = ""
+    description = "Pushes the specified bytes onto the stack."
     js= "pushBytes(v: BytesLike)"
     solidity = "" />
 
 <MethodPartial 
-    description = ""
+    description = "Pushes the encoded bytes of a GatewayProgram onto the stack."
     js= "pushProgram(program: GatewayProgram)"
     solidity = "" />
 

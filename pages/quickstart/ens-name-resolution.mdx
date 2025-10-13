@@ -1,28 +1,28 @@
 # Quick(ish)start
 
-This quickstart outlines how to deploy a solution for resolving an ENS domain from one of our supported [chains](./chains).
+This quickstart outlines how to deploy a solution for resolving an ENS domain from one of our supported [chains](/chains).
 
 <div class = "info mt-20">
-    <p>**!!** You can see that [`ethglobal.eth`](https://app.ens.domains/ethglobal.eth) resolves using this exact solution on **Sepolia**.</p>
-    <p>**!!** The resolver it is using is deployed and verified on **Sepolia** [here](https://sepolia.etherscan.io/address/0x44a40a4479e49e54b51269d2a143bb428205a806#code).</p>
-    <p>**!!** The data contract is deployed and verified on **Optimism Sepolia** [here](https://sepolia-optimism.etherscan.io/address/0xbf6d2c96547bb015961cb38d30596a781c7039e1).</p>
+    <h3 className = "mb-5">**Live Example**</h3>
+    <p className = "mb-5">On **Sepolia**, the ETH address for [`ethglobal.eth`](https://sepolia.app.ens.domains/ethglobal.eth) resolves using this exact solution.</p>
+    <p className = "mb-5">The resolver it is using is deployed and verified on **Sepolia** [here](https://sepolia.etherscan.io/address/0x44a40a4479e49e54b51269d2a143bb428205a806#code).</p>
+    <p>The data contract is deployed and verified on **Optimism Sepolia** [here](https://sepolia-optimism.etherscan.io/address/0xbf6d2c96547bb015961cb38d30596a781c7039e1#code).</p>
 </div>
 
 ## 1. Initial setup
 
-Run these commands: 
+Install [Foundry](https://getfoundry.sh/forge/reference/install/), and run the following setup commands.
 
 ```bash
 mkdir quickstart
 cd quickstart
-git init
 forge install https://github.com/unruggable-labs/unruggable-gateways
 mkdir contracts
 ```
 
 ## 2. Create a `foundry.toml`
 
-- Add the following configuration.
+Add the following configuration.
 
 ```bash
 [profile.default]
@@ -114,11 +114,11 @@ contract L1SimpleResolver is GatewayFetchTarget {
 ```
 - Replace `YOUR-L1-RPC-URL` with the RPC URL for your *Layer 1* node.
 - Replace `YOUR-PRIVATE-KEY` with your deployment private key.
-- Replace `VERIFIER-ADDRESS` with the verifier address for your chosen L2. This can be found [here](/verifier/deployments).
+- Replace `VERIFIER-ADDRESS` with the verifier address for your chosen L2. This can be found [here](/verifiers/deployments).
 
 <div class = "info mt-20">
 	<p>**!!** Take note of finalization times.</p> 
-    <p>**!!** Our Sepolia Verifiers/Gateways relax finalization rules for speed of development. [Read more](/verifier/deployments).</p> 
+    <p>**!!** Our Sepolia Verifiers/Gateways relax finalization rules for speed of development. [Read more](/verifiers/deployments).</p> 
 </div>
 
 - Replace `THE-ADDRESS-OF-THE-CONTRACT-YOU-DEPLOYED-IN-THE-LAST-STEP` with.. you guessed it ;)
@@ -130,7 +130,7 @@ forge create --rpc-url YOUR-L1-RPC-URL --private-key YOUR-PRIVATE-KEY contracts/
 
 You should get an output similar to the below:
 
-```
+```bash
 [⠊] Compiling...
 Deployed to: 0x44A40a4479E49e54B51269d2a143bB428205A806
 Transaction hash: 0x61a7705f137a55bb2c7c3ddedc54ede64dfd6d856c8a1d31faf2fbb1339e7932
@@ -140,9 +140,9 @@ Transaction hash: 0x61a7705f137a55bb2c7c3ddedc54ede64dfd6d856c8a1d31faf2fbb1339e
 
 Set the resolver for your ENS name to the address of the deployed L1 Resolver.
 
-You can do this through the [ENS App](https://app.ens.domains/). 
+You can do this through the [ENS App](https://sepolia.app.ens.domains/). 
 
-**Note:** Make sure you are connected to the correct network (Mainnet, Sepolia, or Holesky). 
+**Note:** Make sure you are connected to the correct network. 
 
 ![Update resolver using the ENS App](/images/docs/update-resolver-ens-app.png)
 
@@ -152,8 +152,8 @@ You can do this through the [ENS App](https://app.ens.domains/).
 
 This easiest way to do this is to view your names profile on the ENS App:
 
-```
-https://app.ens.domains/YOUR-NAME-HERE.eth
+```bash
+https://sepolia.app.ens.domains/YOUR-NAME-HERE.eth
 ```
 
 <div class = "info mt-20">
@@ -162,25 +162,6 @@ https://app.ens.domains/YOUR-NAME-HERE.eth
     <p>**!!** The data contract is deployed and verified on **Optimism Sepolia** [here](https://sepolia-optimism.etherscan.io/address/0xbf6d2c96547bb015961cb38d30596a781c7039e1).</p>
 </div>
 
-## Help me !
+## Further help
 
-For further guidance we recommend that you read through the rest of the documentation. Especially our [examples](/examples) section. If you still can't find an answer we would be happy to help you out on our [Discord](https://discord.gg/rVCaAvqzCA).
-
-Here are some quicklinks to our example repos:
-
-### TrustedVerifier Demo
-
-[This example](https://github.com/unruggable-labs/unruggable-gateways-trusted-verifier-example) demonstrates how to use a `TrustedVerifier` to quickly iterate when developing.
-
-### End-to-end Resolution Demo
-
-[These examples](https://github.com/unruggable-labs/unruggable-gateways-ens-resolution-demos) demonstrates full end to end resolution using Unruggable Gateways.
-
-![Resolution Demo](https://github.com/unruggable-labs/unruggable-gateways-ens-resolution-demos/actions/workflows/resolution-demo.yml/badge.svg)
-
-### Typescript VM Demo
-
-[These examples](https://github.com/unruggable-labs/unruggable-gateways-examples) demonstrates using our Typescript VM implementation to read values from an assortment of data types/structures.
-
-![Gateway Examples](https://github.com/unruggable-labs/unruggable-gateways-examples/actions/workflows/examples.yml/badge.svg)
-
+For further guidance we recommend that you read through the rest of the documentation. Especially our [examples](/examples) section. If you still can't find an answer we would be happy to help you out on our [Discord](https://discord.gg/QtrHVK3U8c).

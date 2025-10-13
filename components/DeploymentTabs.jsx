@@ -11,7 +11,7 @@ const mainnetDeployments = [
     {"chain": "Arbitrum One", "address": "arbitrum.verifier.unruggable.eth"},
     {"chain": "Base", "address": "base.verifier.unruggable.eth"},
     {"chain": "Optimism", "address": "optimism.verifier.unruggable.eth"},
-    {"chain": "Linea", "address": "linea.verifier.unruggable.eth", "notes": (<>Linea verifiers depend on their <a href='https://github.com/Linea-team/shomei' class="nx-underline" target="_blank">shomei</a> nodes which are unreliable.</>)},
+    {"chain": "Linea", "address": "linea.verifier.unruggable.eth", "notes": (<>Linea verifiers depend on their <a href='https://github.com/Linea-team/shomei' className="nx-underline" target="_blank">shomei</a> nodes which are unreliable.</>)},
     {"chain": "Scroll", "address": "scroll.verifier.unruggable.eth"},
     {"chain": "Self", "address": "self.verifier.unruggable.eth"},
 ];
@@ -20,7 +20,7 @@ const sepoliaDeployments = [
     {"chain": "Arbitrum One", "address": "arbitrum-sepolia.verifier.unruggable.eth"},
     {"chain": "Base", "address": "base-sepolia.verifier.unruggable.eth"},
     {"chain": "Optimism", "address": "optimism-sepolia.verifier.unruggable.eth"},
-    {"chain": "Linea", "address": "linea-sepolia.verifier.unruggable.eth", "notes": (<>Linea verifiers depend on their <a href='https://github.com/Linea-team/shomei' class="nx-underline" target="_blank">shomei</a> nodes which are unreliable.</>)},
+    {"chain": "Linea", "address": "linea-sepolia.verifier.unruggable.eth", "notes": (<>Linea verifiers depend on their <a href='https://github.com/Linea-team/shomei' className="nx-underline" target="_blank">shomei</a> nodes which are unreliable.</>)},
     {"chain": "Scroll", "address": "scroll-sepolia.verifier.unruggable.eth"},
     {"chain": "Trusted", "address": "trusted-sepolia.verifier.unruggable.eth"},
     {"chain": "Self", "address": "self-sepolia.verifier.unruggable.eth"},
@@ -34,7 +34,7 @@ const tdClass="nx-m-0 nx-border nx-border-gray-300 nx-px-4 nx-py-2 dark:nx-borde
 
 export default function DeploymentTabs() {
     
-    const [defaultTabIndex, setDefaultTabIndex] = useState(false);
+    const [defaultTabIndex, setDefaultTabIndex] = useState(null);
 
     useEffect(() => {
 
@@ -46,8 +46,7 @@ export default function DeploymentTabs() {
     });
 
     const handleChange = (e) => {
-        console.log("lol", e);
-    
+            
         // Get the current URL
         const url = new URL(window.location);
     
@@ -58,11 +57,10 @@ export default function DeploymentTabs() {
         history.replaceState(null, '', url.toString());
     }
 
-
     return (
 
         <>
-        {defaultTabIndex && (
+        {defaultTabIndex != null && (
             <Tabs 
                 defaultIndex={defaultTabIndex}
                 items={chainOptions.map((e)=>e.text)}

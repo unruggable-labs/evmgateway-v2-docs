@@ -1,0 +1,10 @@
+# Ethereum Name Service, Cross Chain Reverse Resolution (ENSIP-19)
+
+ENS primary names allow for the owner of an address to specify which of their ENS names is the main identifer for that particular address. Under the hood this was historically done as outlined in [ENSIP-3: Reverse Resolution](https://docs.ens.domains/ensip/3).
+
+[ENSIP-19: Multichain Primary Names](https://docs.ens.domains/ensip/19) outlines the process by which the primary name for an address can be resolved on a chain by chain basis using data from the chain in question. 
+
+The team at [Base Names](https://www.base.org/names) have documented their implementation here: [L2 Primary Names are coming to Basenames: ENSIP-19
+](https://blog.base.dev/basenames-ensip-19).
+
+Under the hood, the reading and verification of data coming from the supported L2s is handled by the Unruggable Gateways codebase. Gateways for these chains are operated by [dRPC](https://drpc.org/) and verifiers for each chain have been deployed on Ethereum mainnet.

@@ -9,7 +9,7 @@
 
 ## High level overview
 
-Taiko is EVM compatible and implements its account and storage tries using your standard Patricia Merkle Trie. We verify the returned proofs using the `SecureMerkleTrie.sol` library. 
+Taiko is EVM compatible and implements its account and storage tries using your standard Patricia Merkle Trie. We verify the returned proofs using the `SecureMerkleTrie.sol` library from within our `EthVerifierHooks.sol` contract.
 
 
 ### Context
@@ -23,7 +23,4 @@ The Taiko commit data contains the `parentHash` returned from a call to `eth_get
 ### Verification
 
 The Unruggable gateway Typescript prover implementation used for Taiko is `EthProver.ts`. 
-
-### Notes
-
 

@@ -14,16 +14,17 @@ Replace `op` in `trusted:op` with the appropriate chain identifier.
 
 ```bash
 git clone https://github.com/unruggable-labs/unruggable-gateways.git
-bun run serve —-latest —-debug trusted:op
+cd unruggable-gateways
+bun i
+bun run serve trusted:op
 ```
 
-Further information about running a gateway can be found [here](/running-a-gateway).
+For more information see [Running a gateway](/gateways/running-a-gateway).
 
 ## 2. Create a repo and install dependencies
 
 ```bash
-bun i @unruggable/gateways
-bun i @adraffy/blocksmith
+bun i @unruggable/gateways @adraffy/blocksmith
 ```
 
 ## 3. Write your contract code

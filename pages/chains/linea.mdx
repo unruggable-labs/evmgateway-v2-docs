@@ -18,24 +18,19 @@ The `LineaRollup` rollup smart contract implementation is deployed behind a prox
 
 Linea uses a Spare Merkle Trie (SPT) data structure.
 
-The [Linea: Operator](https://etherscan.io/address/0x9228624c3185fcbcf24c1c9db76d8bef5f5dad64) address calls `finalizeBlocksWithProof` passing in the generated aggregate ZK Proof to update the latest finalized L2 block number and associated state root. An example transaction can be seen [here](https://etherscan.io/tx/0xc75a12f2011bae3c1cf0703b43fa48a6936022e782d8f9c0cf88465abe2251c3#eventlog).
+The lifecycle of a Linea transaction is outlined in deptth [here](https://docs.linea.build/technology/transaction-lifecycle). Ultimately, a call is maded to `finalizeBlocks` on the Layer 1 `L1MessageService` contract containing an aggregated proof of data from multiple transactions across multiple blocks.
 
-<img src = "/images/docs/linea-data-finalized-event-log.png" style = {{marginTop: "40px"}} />
+LineaScan offers an interface to track and display [finalized batches](https://lineascan.build/batches).
 
-
-### Context
-
-The `LineaRollup.ts`specifies the finalised L2 block number as the [context](/architecture#context) for virtual machine requests (returned by calling `currentL2BlockNumber` on the Linea rollup contract).
-
-### Commit
-
-The Linea `L1MessageService` [contract](https://etherscan.io/address/0xd19d4b5d358258f05d7b411e21a1460d11b0876f) has `stateRootHashes` method that maps a L2 `blockNumber` to a state root. The state root makes up the body of the commit for Linea.
+![Linea Finalized Batches](/images/screenshots/lineascan-finalized-batches.png)
 
 ### Verification
 
-The Unruggable gateway Typescript prover implementation used for Linea is `LineaProver.ts`. Linea implements the `linea_getProof` RPC method that returns proof data that can be verified with the [SparseMerkleProof.sol](https://github.com/Consensys/linea-monorepo/blob/main/contracts/contracts/lib/SparseMerkleProof.sol)([tests](https://github.com/Consensys/linea-monorepo/blob/main/contracts/test/SparseMerkleProof.ts)) written by Consensys.
+The Unruggable gateway Typescript prover implementation used for Linea is `LineaProver.ts`. 
 
-The verifier for Linea proofs is found in the `LineaVerifier.sol` that is deployed on L1. We interface with the `SpareMerkleProof.sol` library through our proving hooks in `LineaTrieHooks.sol`.
+Linea implements the `linea_getProof` RPC method for returning proof data, and these proofs are verified by the `LineaVerifier.sol` contract [deployed](/verifiers/deployments/) on L1. 
+
+The verifiers interface with the `SpareMerkleProof.sol` library through our proving hooks in `LineaTrieHooks.sol`.
 
 
 

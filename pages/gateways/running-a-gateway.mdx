@@ -1,0 +1,65 @@
+# Running a gateway
+
+If you would like to run your own gateway, it is simple to do so.
+
+We also have a repository to help you deploy your own gateway to a Hetzner cloud server in a matter of minutes. See [Deploy your own](/gateways/deploy-your-own) for more details.
+
+To run a gateway:
+
+## Checkout
+
+Checkout the [repository](https://github.com/unruggable-labs/unruggable-gateways/tree/main).
+
+```bash 
+git clone git@github.com:unruggable-labs/unruggable-gateways.git
+```
+
+## Setup
+
+Install [Foundry](https://getfoundry.sh/forge/reference/install/), and run the following setup commands
+
+```bash
+forge install
+bun i
+```
+
+## Configuration
+
+Copy the `.env.example` template to `.env` and define the appropriate environment variables.
+
+```bash
+ALCHEMY_KEY
+INFURA_KEY
+DRPC_KEY
+```
+
+## Run it
+
+```bash
+bun run serve <chain-identifier> [port]
+```
+
+### Chain Identifiers
+
+```bash
+--------------------------------
+Available chain identifiers:
+--------------------------------
+[
+  "abstract-sepolia", "ape", "arb-nova", "arb1", "arb1-sepolia", "base", "base-sepolia", "blast",
+  "bob", "bob-sepolia", "bsc", "celo", "celo-alfajores", "cyber", "cyber-sepolia", "fraxtal", "gnosis",
+  "gnosis-chiado", "holesky", "hoodi", "ink", "ink-sepolia", "linea", "linea-sepolia", "lisk", "lisk-sepolia",
+  "mainnet", "mantle", "mantle-sepolia", "mint", "mint-sepolia", "mode", "mode-sepolia", "morph",
+  "morph-holesky", "op", "op-bnb", "op-sepolia", "polygon-amoy", "polygon-pos", "redstone", "scroll",
+  "scroll-sepolia", "sepolia", "shape", "soneium", "soneium-sepolia", "sophon", "sophon-sepolia",
+  "starknet", "starknet-sepolia", "swell", "swell-sepolia", "taiko", "taiko-hekla", "unichain",
+  "unichain-sepolia", "void", "world", "world-sepolia", "zero", "zero-sepolia", "zircuit", "zircuit-sepolia",
+  "zkevm", "zkevm-cardona", "zksync", "zksync-sepolia", "zora"
+]
+```
+
+The latest chain identifiers, and configuration options can be seen by running the following command:
+
+```bash
+bun run test/debug/serve-list.ts
+```
